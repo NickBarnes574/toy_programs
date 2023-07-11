@@ -1,5 +1,5 @@
-#include "typewriter_functions.h"
 #include "utilities.h"
+#include "vault-tec_functions.h"
 
 int main(int argc, char ** argv)
 {
@@ -8,7 +8,7 @@ int main(int argc, char ** argv)
     (void)argc;
     (void)argv;
 
-    exit_code = typewriter();
+    exit_code = start_terminal();
     if (E_SUCCESS != exit_code)
     {
         print_error("failure.", __func__);

@@ -3,22 +3,22 @@
 #include <stdio.h>
 #include <time.h>
 
-#include "typewriter_functions.h"
 #include "utilities.h"
+#include "vault-tec_functions.h"
 
 #define SLEEP_LENGTH 20000000
 
-int typewriter(void)
+int start_terminal(void)
 {
     int exit_code = E_FAILURE;
 
     char message[] =
         "Please enter your username:\n\
-    Admin\n\
+    Dogmeat\n\
 \n\
 Please enter your password:\n\
 \n\
-Access granted. Welcome, Admin.\n\
+Access granted. Welcome, Dogmeat.\n\
 \n\
 ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL\n\
 ENTER PASSWORD NOW\n\

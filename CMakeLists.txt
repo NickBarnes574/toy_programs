@@ -14,8 +14,8 @@ if (EXISTS "${CMAKE_CURRENT_LIST_DIR}/0_Common/CMakeLists.txt")
     add_subdirectory(0_Common)
 endif()
 
-if (EXISTS "${CMAKE_CURRENT_LIST_DIR}/1_Typewriter/CMakeLists.txt")
-    add_subdirectory(1_Typewriter)
+if (EXISTS "${CMAKE_CURRENT_LIST_DIR}/1_Vault-Tec_Terminal/CMakeLists.txt")
+    add_subdirectory(1_Vault-Tec_Terminal)
 endif()
 
 # EOF
