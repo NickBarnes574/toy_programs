@@ -11,7 +11,7 @@ int main(int argc, char ** argv)
     exit_code = typewriter();
     if (E_SUCCESS != exit_code)
     {
-        print_error("failure.", __func__);
+        print_error("failure.");
         goto END;
     }
 

@@ -17,7 +17,7 @@
  * @param p_message The message to print
  * @return void - Returns nothing
  */
-void print_error(const char * p_message, const char * p_func_name);
+void print_error(const char * p_message);
 
 /**
  * @brief Prints a custom error message to 'stderr' in addition to an 'errno'

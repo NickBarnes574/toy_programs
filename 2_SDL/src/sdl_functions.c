@@ -7,13 +7,13 @@ SDL_Window * new_window(const char * name, int width, int height)
 
     if (NULL == name)
     {
-        print_error("No name provided.", __func__);
+        print_error("No name provided.");
         goto END;
     }
 
     if ((1 > width) || (1 > height))
     {
-        print_error("Width and height must be greater than 0.", __func__);
+        print_error("Width and height must be greater than 0.");
         goto END;
     }
 

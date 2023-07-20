@@ -24,13 +24,13 @@ int read_bytes(int read_fd, void * buffer, size_t num_bytes)
 
     if (NULL == buffer)
     {
-        print_error("NULL argument passed.", __func__);
+        print_error("NULL argument passed.");
         goto END;
     }
 
     if (num_bytes == bytes_read)
     {
-        print_error("Nothing to read.", __func__);
+        print_error("Nothing to read.");
         goto END;
     }
 
@@ -43,7 +43,7 @@ int read_bytes(int read_fd, void * buffer, size_t num_bytes)
 
         if (E_FAILURE == check)
         {
-            print_error("read() error.", __func__);
+            print_error("read() error.");
             goto END;
         }
 
@@ -57,7 +57,7 @@ int read_bytes(int read_fd, void * buffer, size_t num_bytes)
 
     if (num_bytes != bytes_read)
     {
-        print_error("Incorrect number of bytes were read.", __func__);
+        print_error("Incorrect number of bytes were read.");
     }
 
     exit_code = E_SUCCESS;
@@ -74,13 +74,13 @@ int write_bytes(int write_fd, void * buffer, size_t num_bytes)
 
     if (NULL == buffer)
     {
-        print_error("NULL argument passed.", __func__);
+        print_error("NULL argument passed.");
         goto END;
     }
 
     if (num_bytes == bytes_written)
     {
-        print_error("Nothing to write.", __func__);
+        print_error("Nothing to write.");
         goto END;
     }
 
@@ -94,7 +94,7 @@ int write_bytes(int write_fd, void * buffer, size_t num_bytes)
 
         if (E_FAILURE == check)
         {
-            print_error("write() error.", __func__);
+            print_error("write() error.");
             goto END;
         }
 
@@ -108,7 +108,7 @@ int write_bytes(int write_fd, void * buffer, size_t num_bytes)
 
     if (num_bytes != bytes_written)
     {
-        print_error("Incorrect number of bytes were written.", __func__);
+        print_error("Incorrect number of bytes were written.");
     }
 
     exit_code = E_SUCCESS;
@@ -124,15 +124,14 @@ int close_fd(int file_descriptor)
     {
         print_error(
             "Invalid file descriptor. Attempting to close 'stdin', 'stdout', "
-            "or 'stderr' would result in unexpected behavior.\n",
-            __func__);
+            "or 'stderr' would result in unexpected behavior.\n");
         goto END;
     }
 
     exit_code = close(file_descriptor);
     if (E_SUCCESS != exit_code)
     {
-        print_error("close() failed.", __func__);
+        print_error("close() failed.");
     }
 
     exit_code = E_SUCCESS;

@@ -15,7 +15,7 @@ int str_to_int32(const char * p_input, number_t * p_output)
 
     if ((NULL == p_input) || (NULL == p_output))
     {
-        print_error("NULL pointer passed as parameter.", __func__);
+        print_error("NULL pointer passed as parameter.");
         goto END;
     }
 
@@ -27,35 +27,35 @@ int str_to_int32(const char * p_input, number_t * p_output)
     // Check if there was a reported error when the result is equal to 0
     if ((0 != errno) && (0 == result))
     {
-        print_error("strtol() unknown error.", __func__);
+        print_error("strtol() unknown error.");
         goto END;
     }
 
     // Check if there was a reported error when the result is equal to LONG_MAX
     if ((ERANGE == errno) && (LONG_MAX == result))
     {
-        print_error("signed 32-bit overflow detected.", __func__);
+        print_error("signed 32-bit overflow detected.");
         goto END;
     }
 
     // Check if the result is greater than INT32_MAX
     if (INT32_MAX < result)
     {
-        print_error("signed 32-bit integer overflow detected.", __func__);
+        print_error("signed 32-bit integer overflow detected.");
         goto END;
     }
 
     // Check if the result is less than INT32_MIN
     if (INT32_MIN > result)
     {
-        print_error("signed 32-bit integer underflow detected.", __func__);
+        print_error("signed 32-bit integer underflow detected.");
         goto END;
     }
 
     // Check if no digits were found
     if (endptr == p_input)
     {
-        print_error("strtol() invalid input - no digits found.", __func__);
+        print_error("strtol() invalid input - no digits found.");
         goto END;
     }
 
@@ -63,7 +63,7 @@ int str_to_int32(const char * p_input, number_t * p_output)
     // the first character that can't be converted
     if ('\0' != *endptr)
     {
-        print_error("strtol() invalid input - extra characters.", __func__);
+        print_error("strtol() invalid input - extra characters.");
         goto END;
     }
 
@@ -80,7 +80,7 @@ int str_to_uint32(const char * p_input, number_t * p_output)
 
     if ((NULL == p_input) || (NULL == p_output))
     {
-        print_error("NULL pointer passed as parameter.", __func__);
+        print_error("NULL pointer passed as parameter.");
         goto END;
     }
 
@@ -92,28 +92,28 @@ int str_to_uint32(const char * p_input, number_t * p_output)
     // Check if there was a reported error when the result is equal to 0
     if ((0 != errno) && (0 == result))
     {
-        print_error("strtol() unknown error.", __func__);
+        print_error("strtol() unknown error.");
         goto END;
     }
 
     // Check if there was a reported error when the result is equal to ULONG_MAX
     if ((ERANGE == errno) && (ULONG_MAX == result))
     {
-        print_error("unsigned 32-bit overflow detected.", __func__);
+        print_error("unsigned 32-bit overflow detected.");
         goto END;
     }
 
     // Check if the result is greater than UINT32_MAX
     if (UINT32_MAX < result)
     {
-        print_error("unsigned 32-bit integer overflow detected.", __func__);
+        print_error("unsigned 32-bit integer overflow detected.");
         goto END;
     }
 
     // Check if no digits were found
     if (endptr == p_input)
     {
-        print_error("strtol() invalid input - no digits found.", __func__);
+        print_error("strtol() invalid input - no digits found.");
         goto END;
     }
 
@@ -121,7 +121,7 @@ int str_to_uint32(const char * p_input, number_t * p_output)
     // the first character that can't be converted
     if ('\0' != *endptr)
     {
-        print_error("strtol() invalid input - extra characters.", __func__);
+        print_error("strtol() invalid input - extra characters.");
         goto END;
     }
 

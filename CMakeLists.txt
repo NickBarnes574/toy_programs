@@ -22,4 +22,8 @@ if (EXISTS "${CMAKE_CURRENT_LIST_DIR}/2_SDL/CMakeLists.txt")
     add_subdirectory(2_SDL)
 endif()
 
+if (EXISTS "${CMAKE_CURRENT_LIST_DIR}/DSA/CMakeLists.txt")
+    add_subdirectory(DSA)
+endif()
+
 # EOF

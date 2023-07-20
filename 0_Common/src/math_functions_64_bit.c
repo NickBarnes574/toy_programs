@@ -25,7 +25,7 @@ int add_int64(int64_t operand_1, int64_t operand_2, int64_t * p_result)
     // a negative number due to an INT64_MAX overflow
     if ((0 < operand_2) && ((INT64_MAX - operand_2) < operand_1))
     {
-        print_error("Overflow detected.", __func__);
+        print_error("Overflow detected.");
         goto END;
     }
 
@@ -33,7 +33,7 @@ int add_int64(int64_t operand_1, int64_t operand_2, int64_t * p_result)
     // a positive number due to an INT64_MIN underflow
     if ((0 > operand_2) && ((INT64_MIN - operand_2) > operand_1))
     {
-        print_error("Underflow detected.", __func__);
+        print_error("Underflow detected.");
         goto END;
     }
 
@@ -57,7 +57,7 @@ int subtract_int64(int64_t operand_1, int64_t operand_2, int64_t * p_result)
     // postive number produces a negative number due to an INT64_MAX overflow
     if ((0 > operand_2) && ((INT64_MAX + operand_2) < operand_1))
     {
-        print_error("Overflow detected.", __func__);
+        print_error("Overflow detected.");
         goto END;
     }
 
@@ -65,7 +65,7 @@ int subtract_int64(int64_t operand_1, int64_t operand_2, int64_t * p_result)
     // produces a positive number due to an INT64_MIN underflow
     if ((0 < operand_2) && ((INT64_MIN + operand_2) > operand_1))
     {
-        print_error("Underflow detected.", __func__);
+        print_error("Underflow detected.");
         goto END;
     }
 
@@ -95,7 +95,7 @@ int multiply_int64(int64_t operand_1, int64_t operand_2, int64_t * p_result)
         // check_quotient
         if (operand_1 > check_quotient)
         {
-            print_error("Overflow detected.", __func__);
+            print_error("Overflow detected.");
             goto END;
         }
     }
@@ -109,7 +109,7 @@ int multiply_int64(int64_t operand_1, int64_t operand_2, int64_t * p_result)
         // less than check_quotient
         if (operand_2 < check_quotient)
         {
-            print_error("Underflow detected.", __func__);
+            print_error("Underflow detected.");
             goto END;
         }
     }
@@ -123,7 +123,7 @@ int multiply_int64(int64_t operand_1, int64_t operand_2, int64_t * p_result)
         // less than check_quotient
         if (operand_2 < check_quotient)
         {
-            print_error("Underflow detected.", __func__);
+            print_error("Underflow detected.");
             goto END;
         }
     }
@@ -137,7 +137,7 @@ int multiply_int64(int64_t operand_1, int64_t operand_2, int64_t * p_result)
         // less than check_quotient
         if ((operand_1 != 0) && (operand_2 < check_quotient))
         {
-            print_error("Overflow detected.", __func__);
+            print_error("Overflow detected.");
             goto END;
         }
     }
@@ -161,7 +161,7 @@ int divide_int64(int64_t operand_1, int64_t operand_2, int64_t * p_result)
     // Check for division by 0
     if (0 == operand_2)
     {
-        print_error("Divide by zero error.", __func__);
+        print_error("Divide by zero error.");
         *p_result = 0;
         goto END;
     }
@@ -169,7 +169,7 @@ int divide_int64(int64_t operand_1, int64_t operand_2, int64_t * p_result)
     // Check for -1 on two's complement machines
     if ((-1 == operand_2) && (INT64_MIN == operand_1))
     {
-        print_error("Overflow possible.", __func__);
+        print_error("Overflow possible.");
         goto END;
     }
 
@@ -192,14 +192,14 @@ int modulo_int64(int64_t operand_1, int64_t operand_2, int64_t * p_result)
     // Check for division by 0
     if (0 == operand_2)
     {
-        print_error("Modulo by zero error.", __func__);
+        print_error("Modulo by zero error.");
         goto END;
     }
 
     // Check for -1 on two's complement machines
     if ((-1 == operand_2) && (INT64_MIN == operand_1))
     {
-        print_error("Overflow possible.", __func__);
+        print_error("Overflow possible.");
         goto END;
     }
 
