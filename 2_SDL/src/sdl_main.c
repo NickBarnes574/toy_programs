@@ -6,7 +6,7 @@
 
 #define WINDOW_WIDTH  400
 #define WINDOW_HEIGHT 200
-#define MS_DELAY      5000
+#define MS_DELAY      10000
 
 int main(int argc, char ** argv)
 {
@@ -17,7 +17,7 @@ int main(int argc, char ** argv)
 
     SDL_Init(SDL_INIT_EVERYTHING);
 
-    window = SDL_CreateWindow("Subscribe!",
+    window = SDL_CreateWindow("HELLO WORLD!",
                               SDL_WINDOWPOS_UNDEFINED,
                               SDL_WINDOWPOS_UNDEFINED,
                               WINDOW_WIDTH,
