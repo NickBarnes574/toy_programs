@@ -4,6 +4,7 @@ set(LIBRARY_SOURCES
     src/utilities.c
     src/number_converter.c
     src/file_io.c
+    src/misc.c
     )
 
 add_library(Common ${LIBRARY_SOURCES})
