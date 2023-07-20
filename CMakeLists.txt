@@ -18,4 +18,8 @@ if (EXISTS "${CMAKE_CURRENT_LIST_DIR}/1_Typewriter/CMakeLists.txt")
     add_subdirectory(1_Typewriter)
 endif()
 
+if (EXISTS "${CMAKE_CURRENT_LIST_DIR}/2_SDL/CMakeLists.txt")
+    add_subdirectory(2_SDL)
+endif()
+
 # EOF
