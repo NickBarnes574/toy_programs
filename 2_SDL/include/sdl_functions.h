@@ -8,6 +8,8 @@
 
 #    include "SDL2/SDL.h"
 
+SDL_Window * new_window(const char * name, int width, int height);
+
 #endif /* _SDL_FUNCTIONS_H */
 
 /*** end of file ***/

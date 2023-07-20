@@ -1,13 +1,12 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "sdl_functions.h"
 #include "utilities.h"
-#include <stdbool.h>
 
 #define WINDOW_WIDTH  400
 #define WINDOW_HEIGHT 200
-#define MS_DELAY      10000
 
 int main(int argc, char ** argv)
 {
@@ -20,22 +19,9 @@ int main(int argc, char ** argv)
 
     SDL_Init(SDL_INIT_EVERYTHING);
 
-    window = SDL_CreateWindow("HELLO WORLD!",
-                              SDL_WINDOWPOS_UNDEFINED,
-                              SDL_WINDOWPOS_UNDEFINED,
-                              WINDOW_WIDTH,
-                              WINDOW_HEIGHT,
-                              SDL_WINDOW_RESIZABLE);
+    window = new_window("hello world!", WINDOW_WIDTH, WINDOW_HEIGHT);
 
-    if (NULL == window)
-    {
-        fprintf(stderr,
-                "Unable to initialize window.\nSDL ERROR: %s\n",
-                SDL_GetError());
-        goto END;
-    }
-
-    while (program_running)
+    while (true == program_running)
     {
         while (SDL_PollEvent(&event))
         {
@@ -48,6 +34,7 @@ int main(int argc, char ** argv)
     }
 
     SDL_DestroyWindow(window);
+
     exit_code = E_SUCCESS;
 END:
     SDL_Quit();
