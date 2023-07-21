@@ -15,6 +15,8 @@
  */
 int generate_random_int(int min, int max);
 
+int * random_int_list(int min, int max);
+
 #endif /* _MISC_H */
 
 /*** end of file ***/

@@ -24,10 +24,10 @@
  */
 typedef struct list_node_t
 {
-    uint32_t position;
-    void *data;
-    struct list_node_t *prev;
-    struct list_node_t *next;
+    uint32_t             position;
+    void *               data;
+    struct list_node_t * prev;
+    struct list_node_t * next;
 } list_node_t;
 
 /**
@@ -68,11 +68,11 @@ typedef void (*ACT_F)(void *);
  */
 typedef struct list_t
 {
-    uint32_t size;
-    list_node_t *head;
-    list_node_t *tail;
-    FREE_F customfree;
-    CMP_F compare_function;
+    uint32_t      size;
+    list_node_t * head;
+    list_node_t * tail;
+    FREE_F        customfree;
+    CMP_F         compare_function;
 } list_t;
 
 /**
@@ -83,7 +83,7 @@ typedef struct list_t
  * @param node
  * @return void*
  */
-comp_rtns_t default_compare(void *value_to_find, void *node);
+comp_rtns_t default_compare(void * value_to_find, void * node);
 
 /**
  * @brief User defined Compare Function.
@@ -92,7 +92,7 @@ comp_rtns_t default_compare(void *value_to_find, void *node);
  * @param node
  * @return void*
  */
-comp_rtns_t custom_compare(void *value_to_find, void *node);
+comp_rtns_t custom_compare(void * value_to_find, void * node);
 
 /**
  * @brief creates a new list
@@ -102,7 +102,7 @@ comp_rtns_t custom_compare(void *value_to_find, void *node);
  * that list. must
  * @returns pointer to allocated list on success or NULL on failure
  */
-list_t *list_new(FREE_F, CMP_F);
+list_t * list_new(FREE_F, CMP_F);
 
 /**
  * @brief pushes a new node onto the head of list
@@ -111,7 +111,7 @@ list_t *list_new(FREE_F, CMP_F);
  * @param data data to be pushed into node
  * @returns 0 on success, non-zero value on failure
  */
-int list_push_head(list_t *list, void *data);
+int list_push_head(list_t * list, void * data);
 
 /**
  * @brief pushes a new node onto the tail of list
@@ -120,7 +120,7 @@ int list_push_head(list_t *list, void *data);
  * @param data data to be pushed into node
  * @return 0 on success, non-zero value on failure
  */
-int list_push_tail(list_t *list, void *data);
+int list_push_tail(list_t * list, void * data);
 
 /**
  * @brief checks if the list object is empty
@@ -128,7 +128,7 @@ int list_push_tail(list_t *list, void *data);
  * @param list pointer to linked list object to be checked
  * @returns non-zero if list is empty, 0 value if not empty
  */
-int list_emptycheck(list_t *list);
+int list_emptycheck(list_t * list);
 
 /**
  * @brief pops the head node out of the list
@@ -136,7 +136,7 @@ int list_emptycheck(list_t *list);
  * @param list list to pop the node out of
  * @return pointer to popped node on success, NULL on failure
  */
-list_node_t *list_pop_head(list_t *list);
+list_node_t * list_pop_head(list_t * list);
 
 /**
  * @brief pops the tail node out of the list
@@ -144,7 +144,7 @@ list_node_t *list_pop_head(list_t *list);
  * @param list list to pop the node out of
  * @return pointer to popped node on success, NULL on failure
  */
-list_node_t *list_pop_tail(list_t *list);
+list_node_t * list_pop_tail(list_t * list);
 
 /**
  * @brief get the data from the node at the head of the list without
@@ -153,7 +153,16 @@ list_node_t *list_pop_tail(list_t *list);
  * @param list list to pop the node out of
  * @return pointer to head node on success, NULL on failure
  */
-list_node_t *list_peek_head(list_t *list);
+list_node_t * list_peek_head(list_t * list);
+
+/**
+ * @brief Get the node at a specified position
+ *
+ * @param list The list to pass in
+ * @param position The position to pass
+ * @return list_node_t*
+ */
+list_node_t * list_peek_position(list_t * list, uint32_t position);
 
 /**
  * @brief get the data from the node at the tail of the list without
@@ -162,7 +171,7 @@ list_node_t *list_peek_head(list_t *list);
  * @param list list to pop the node out of
  * @return pointer to tail node on success, NULL on failure
  */
-list_node_t *list_peek_tail(list_t *list);
+list_node_t * list_peek_tail(list_t * list);
 
 /**
  * @brief remove a specific node from the list based on the data stored
@@ -172,7 +181,7 @@ list_node_t *list_peek_tail(list_t *list);
  * @param item_to_remove the data object to be searched for
  * @return 0 on success, non-zero value on failure
  */
-int list_remove(list_t *list, void **item_to_remove);
+int list_remove(list_t * list, void ** item_to_remove);
 
 /**
  * @brief perform a user defined action on the data contained in all of the
@@ -182,7 +191,7 @@ int list_remove(list_t *list, void **item_to_remove);
  * @param action_function pointer to user defined action function
  * @return 0 on success, non-zero value on failure
  */
-int list_foreach_call(list_t *list, ACT_F action_function);
+int list_foreach_call(list_t * list, ACT_F action_function);
 
 /**
  * @brief find the first occurrance of a node containing the search_data as
@@ -193,7 +202,7 @@ int list_foreach_call(list_t *list, ACT_F action_function);
  *                    for
  * @return pointer to node found on success, NULL on failure
  */
-list_node_t *list_find_first_occurrence(list_t *list, void **search_data);
+list_node_t * list_find_first_occurrence(list_t * list, void ** search_data);
 
 /**
  * @brief find the first occurrance of a node containing the search_data as
@@ -205,7 +214,7 @@ list_node_t *list_find_first_occurrence(list_t *list, void **search_data);
  *                    for
  * @return pointer to list of all found occurrecnces on success, NULL on failure
  */
-list_t *list_find_all_occurrences(list_t *list, void **search_data);
+list_t * list_find_all_occurrences(list_t * list, void ** search_data);
 
 /**
  * @brief sort list as per user defined compare function
@@ -213,7 +222,9 @@ list_t *list_find_all_occurrences(list_t *list, void **search_data);
  * @param list pointer to list to be sorted
  * @return 0 on success, non-zero value on failure
  */
-int list_sort(list_t *list);
+int list_sort(list_t * list);
+
+int list_swap_nodes(list_t * list, uint32_t pos1, uint32_t pos2);
 
 /**
  * @brief clear all nodes out of a list
@@ -221,7 +232,7 @@ int list_sort(list_t *list);
  * @param list list to clear out
  * @return 0 on success, non-zero value on failure
  */
-int list_clear(list_t *list);
+int list_clear(list_t * list);
 
 /**
  * @brief delete a list
@@ -229,13 +240,13 @@ int list_clear(list_t *list);
  * @param list_address pointer to list pointer
  * @return 0 on success, non-zero value on failure
  */
-int list_delete(list_t **list_address);
+int list_delete(list_t ** list_address);
 
 /**
  * @brief frees an item and its associated memory
  *
  * @param mem_addr pointer of the item to be free'd
  */
-void custom_free(void *mem_addr);
+void custom_free(void * mem_addr);
 
 #endif

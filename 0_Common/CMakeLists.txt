@@ -5,6 +5,7 @@ set(LIBRARY_SOURCES
     src/number_converter.c
     src/file_io.c
     src/misc.c
+    src/comparisons.c
     )
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)

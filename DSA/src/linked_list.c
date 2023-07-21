@@ -28,7 +28,7 @@ comp_rtns_t custom_compare(void * value_to_find, void * node)
         goto END;
     }
 
-    search_data = *(int *)value_to_find;
+    search_data = *(int *)((list_node_t *)value_to_find)->data;
     node_data   = *(int *)((list_node_t *)node)->data;
 
     printf("Checking for: %d, found: %d\n", search_data, node_data);
@@ -302,6 +302,41 @@ END:
     return node;
 }
 
+list_node_t * list_peek_position(list_t * list, uint32_t position)
+{
+    list_node_t * node    = NULL;
+    list_node_t * current = NULL;
+    // list_node_t * previous = NULL;
+
+    if (NULL == list)
+    {
+        print_error("NULL argument passed.");
+        goto END;
+    }
+
+    // printf("position: %d\n", position);
+
+    // Check if the position is out of range
+    if ((position > list->size) || (position == 0))
+    {
+        print_error("Position out of range.");
+        goto END;
+    }
+
+    // Retrieve the node at the current position
+    current = list->head;
+
+    for (uint32_t idx = 1; idx < position; idx++)
+    {
+        // previous = current;
+        current = current->next;
+    }
+
+    node = current;
+END:
+    return node;
+}
+
 list_node_t * list_peek_tail(list_t * list)
 {
     list_node_t * node = NULL;
@@ -535,6 +570,98 @@ int list_sort(list_t * list)
 END:
     list_delete(&temp_list);
     free(temp_list);
+    return exit_code;
+}
+
+int list_swap_nodes(list_t * list, uint32_t pos1, uint32_t pos2)
+{
+    int           exit_code = E_FAILURE;
+    list_node_t * node1;
+    list_node_t * node2;
+    list_node_t * node1_prev;
+    list_node_t * node1_next;
+    list_node_t * node2_prev;
+    list_node_t * node2_next;
+
+    if (NULL == list)
+    {
+        print_error("NULL argument passed");
+        goto END;
+    }
+
+    // Check if the positions are valid
+    if ((pos1 == pos2) || (0 == pos1) || (0 == pos2) || (pos1 > list->size) ||
+        (pos2 > list->size))
+    {
+        print_error("Invalid positions.");
+        goto END;
+    }
+
+    // Get the nodes at the given positions
+    node1 = list_peek_position(list, pos1);
+    node2 = list_peek_position(list, pos2);
+
+    // Save previous and next nodes for node1 and node2
+    node1_prev = node1->prev;
+    node1_next = node1->next;
+    node2_prev = node2->prev;
+    node2_next = node2->next;
+
+    // If the nodes are not adjacent
+    if (1 == (pos1 - pos2))
+    {
+        // Detach node1 from the list
+        node1_prev->next = node1_next;
+        node1_next->prev = node1_prev;
+
+        // Detach node2 from the list
+        node2_prev->next = node2_next;
+        node2_next->prev = node2_prev;
+
+        // Add node1 to the list at the position of node2
+        node1->prev      = node2_prev;
+        node1->next      = node2_next;
+        node2_prev->next = node1;
+        node2_next->prev = node1;
+
+        // Add node2 to the list at the position of node1
+        node2->prev      = node1_prev;
+        node2->next      = node1_next;
+        node1_prev->next = node2;
+        node1_next->prev = node2;
+    }
+    // If the nodes are adjacent
+    else
+    {
+        // Detach node1 from the list
+        node1_prev->next = node1_next;
+        node1_next->prev = node1_prev;
+
+        // Add node1 to the list at the position of node2
+        node1->prev      = node2;
+        node1->next      = node2_next;
+        node2->next      = node1;
+        node2_next->prev = node1;
+
+        // Add node2 to the list at the position of node1
+        node2->prev      = node1_prev;
+        node2->next      = node1;
+        node1_prev->next = node2;
+        node1->prev      = node2;
+    }
+
+    // Update the head and tail pointers if necessary
+    if ((1 == pos1) || (1 == pos2))
+    {
+        list->head = node2;
+    }
+    if (pos1 == list->size || pos2 == list->size)
+    {
+        list->tail = node2;
+    }
+
+    exit_code = E_SUCCESS;
+END:
     return exit_code;
 }
 
