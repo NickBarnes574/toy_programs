@@ -10,9 +10,9 @@
 
 #define WINDOW_WIDTH  400
 #define WINDOW_HEIGHT 200
-#define MAX_LIST_SIZE 25
+#define MAX_LIST_SIZE 100
 #define MIN_RAND      1
-#define MAX_RAND      25
+#define MAX_RAND      99
 #define SCALE_X       10
 #define SCALE_Y       10
 
@@ -25,8 +25,20 @@ void draw_state(list_t *       list,
     list_node_t * current = list->head;
     for (u_int32_t idx = 0; idx < list->size; idx++)
     {
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-        SDL_RenderDrawLine(renderer, index, 99, index, *(int *)current->data);
+        if (index == idx_a)
+        {
+            SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+        }
+        else if (index == idx_b)
+        {
+            SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+        }
+        else
+        {
+            SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+        }
+        SDL_RenderDrawLine(
+            renderer, index, MAX_LIST_SIZE, index, *(int *)current->data);
         current = current->next;
         index += 1;
     }
@@ -51,7 +63,7 @@ int main(int argc, char ** argv)
 
     // window = new_window("hello world!", WINDOW_WIDTH, WINDOW_HEIGHT);
     SDL_CreateWindowAndRenderer(
-        WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_RESIZABLE, &window, &renderer);
+        100 * 10, 100 * 10, SDL_WINDOW_RESIZABLE, &window, &renderer);
     SDL_RenderSetScale(renderer, SCALE_X, SCALE_Y);
 
     number_list = calloc(MAX_LIST_SIZE, sizeof(int));
